@@ -1,0 +1,71 @@
+---
+title: "paper_asso_pre"
+author: "hyojunahn"
+date: "2017년 10월 5일"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#association rule_assesment machine traslation data
+
+
+### install.packages -> arules
+install.packages("arules")
+
+
+
+### load data
+
+
+
+### wrangling data
+
+
+```{r asds.transactions}
+library(arules)
+asds <- read.csv("D:/asdt_split.csv",header=FALSE)
+asds.list <- split(asds$V2,asds$V1)
+asds.transactions <- as(asds.list,"transactions")
+asds.transactions
+summary(asds.transactions)
+```
+
+##using association rule
+*we follow apriori algorithm*
+
+
+
+```{r summary rule}
+rules = apriori(asds.transactions)
+summary(rules)
+```
+
+
+Right hand side results are many things. So I need to sort.
+I just want to see qa of right hand side.
+
+
+
+```{r inspect rule}
+rules_qa <- subset(rules, rhs %in% c("qa"))
+inspect(rules_qa)
+```
+
+
+### make csv and data.frame for using another analysis
+
+* write(rules_qa, file="D:/ruleqa.csv",sep=",",quote=TRUE,row.names=FALSE)
+* rules_qa_df <- as(rules_qa,"data.frame")
+
+* rule.list <- as.data.frame(inspect(rules))
+* rule.list <- rule.list[order(rule.list$life,decreasing=TRUE),]
+* rule.list
+* summary(rule.list)    
+
+where are you?
+
+
+
