@@ -35,7 +35,7 @@ Test <- rbind(test_data0, test_data1); nrow(Test) #Final test set
 
 
 #################### CREATING DOUBLE-LOOP #####################
-#Set training set as ?쐎utput??dataframe
+#Set training set as outputdataframe
 output <- Train
 
 #Create empty list variables to store data in loop
